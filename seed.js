@@ -1,13 +1,15 @@
-require('dotenv').config()
+require('dotenv').config() // loads environment variables
 const mongoose = require('mongoose');
-const faker = require('faker');
-const models = require('./src/models');
+const faker = require('faker'); // library used for fake data
+
+const models = require('./src/models'); // loads graphql models
 const User = mongoose.model('user');
 
 async function userSeeder() {
     createUserPromises = [];
-    await User.deleteMany({});
+    await User.deleteMany({}); // removes all current users in db
 
+    // creates new users for db
     const users = [];
     for(i = 0; i < 50; i++) {
         users.push({
@@ -18,20 +20,24 @@ async function userSeeder() {
         })
     }
 
+    // creates/pushes users using User model
     users.forEach(user => {
         createUserPromises.push(User.create(user));
     })
 
+    // returns a promise that all users will be created
     return Promise.all(createUserPromises);
 }
 
 async function initSeed() {
+    // connects to mongo db
     await mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useCreateIndex: true });
 
     console.log('***** seeding database...')
 
-    await userSeeder();
+    await userSeeder(); // waits until all users have been created into db
 
+    // closes out of db
     mongoose.connection.close(() => {
         console.log("");
         console.log("Seeding complete.")

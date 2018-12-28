@@ -11,6 +11,7 @@ const User = mongoose.model('user');
 const mutation = new GraphQLObjectType({
     name: "Mutation",
     fields: {
+        // adding a new user into the db
         addUser: {
             type: UserType,
             args: {
