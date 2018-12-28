@@ -1,0 +1,30 @@
+{
+  "name": "apollo-graphql-server",
+  "version": "1.0.0",
+  "description": "boilerplate server using apollo and graphql",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js",
+    "seed": "node seed.js"
+  },
+  "keywords": [
+    "graphql",
+    "apollo",
+    "server"
+  ],
+  "author": "Brett Arnold",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-server": "^2.3.1",
+    "apollo-server-express": "^2.3.1",
+    "body-parser": "^1.18.3",
+    "dotenv": "^6.2.0",
+    "express": "^4.16.4",
+    "faker": "^4.1.0",
+    "graphql": "^14.0.2",
+    "mongoose": "^5.4.1",
+    "morgan": "^1.9.1",
+    "nodemon": "^1.18.9"
+  }
+}
