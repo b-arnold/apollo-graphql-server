@@ -1,4 +1,5 @@
-const { 
+const {
+    GraphQLNonNull, 
     GraphQLObjectType,
     GraphQLString,
     GraphQLID
@@ -20,8 +21,35 @@ const mutation = new GraphQLObjectType({
                 firstName: { type: GraphQLString },
                 lastName: { type: GraphQLString }
             },
-            resolve(parentValue, { email, password, firstName, lastName }) {
-                return (new User({ email, password, firstName, lastName })).save()
+            resolve(parentValue, params) {
+                return (new User(params)).save()
+                    .catch(err => new Error(err));
+            }
+        },
+        // updating a user's information
+        updateUser: {
+            type: UserType,
+            args: {
+                id: { type: new GraphQLNonNull(GraphQLID) },
+                email: { type: GraphQLString },
+                password: { type: GraphQLString },
+                firstName: { type: GraphQLString },
+                lastName: { type: GraphQLString }
+            },
+            resolve(parentValue, params) {
+                return User.updateUser(params)
+                    .catch(err => new Error(err));
+            }
+        },
+        // delete a user in db
+        deleteUser: {
+            type: UserType,
+            args: {
+                id: { type: new GraphQLNonNull(GraphQLID) }
+            },
+            resolve(parentValue, params) {
+                return User.findByIdAndRemove(params.id).exec()
+                    .catch(err => new Error(err));
             }
         }
     }

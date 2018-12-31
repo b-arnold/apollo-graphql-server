@@ -3,7 +3,8 @@ const express = require('express');
 const models = require('./src/models'); // loads graphql models
 const { ApolloServer } = require('apollo-server-express'); // Apollo implementation of graphql server with express
 const schema = require('./src/schema/schema');
-const mongoose = require('mongoose'); 
+const mongoose = require('mongoose');
+mongoose.set('useFindAndModify', false); 
 const morgan = require('morgan');
 
 const app = express();

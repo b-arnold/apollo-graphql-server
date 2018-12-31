@@ -12,7 +12,7 @@ npm run dev
 After these steps, you should have a fully functioning and seeded database.
 
 ## Use
-Use the [Graphql playground](https://www.apollographql.com/docs/apollo-server/features/graphql-playground.html) to test your database. It can be accessed through http://localhost:PORT/graphql.
+Use the [Graphql playground](https://www.apollographql.com/docs/apollo-server/features/graphql-playground.html) to test your database. It can be accessed through *localhost:YOUR_PORT/graphql*.
 
 ## Author
-* **Brett Arnold** - [Profile](https://github.com/b-arnold)
+**Brett Arnold** - [Profile](https://github.com/b-arnold)
