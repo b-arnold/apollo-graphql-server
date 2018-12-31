@@ -7,6 +7,7 @@ Quick instruction for getting the server up and running:
 2. Create a .env file with variables PORT and MONGO_URI specified.
 3. To start the server, run the following command:
 ```
+npm run seed
 npm run dev
 ```
 After these steps, you should have a fully functioning and seeded database.
