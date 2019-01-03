@@ -1,6 +1,7 @@
 require('dotenv').config() // loads environment variables
 const express = require('express');
 const session = require('express-session');
+const passport = require('passport');
 const bodyParser = require('body-parser');
 const router = require('./src/router');
 const models = require('./src/models'); // loads graphql models
@@ -14,14 +15,14 @@ const app = express();
 
 // config for express-session
 const sess = {
-  secret: process.env.AUTH0_CLIENT_SECRET,
+  secret: process.env.APP_SECRET,
   cookie: {},
   resave: false,
   saveUninitialized: true
 }
 
 const server = new ApolloServer({
-  schema
+  schema,
 });
 
 // Error handling for when mongo uri is not specified
@@ -35,8 +36,6 @@ mongoose.connection
   .once('open', () => console.log('Connected to MongoDB.'))
   .on('error', error => console.log('Error connecting to MongoDB:', error ));
 
-// TODO: mount authentication middleware
-
 // for applying middleware to server
 server.applyMiddleware({
   app
@@ -48,9 +47,14 @@ if(app.get('env') === 'production') {
 
 app.use(morgan('combined'));
 app.use(bodyParser.json({ type: '*/*' }));
-router(app);
 
+// setting app and passport session
 app.use(session(sess));
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+app.use('/', router)
 
 app.listen({ port: process.env.PORT }, () =>
   console.log(`Server ready at http://localhost:${process.env.PORT}`)
