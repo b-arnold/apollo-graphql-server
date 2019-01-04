@@ -1,8 +1,9 @@
-require('dotenv').config() // loads environment variables
-const mongoose = require('mongoose');
-const faker = require('faker'); // library used for fake data
+import 'dotenv/config'; // loads environment variables
+import mongoose from 'mongoose';
+import faker from 'faker'; // library used for fake data
 
-const models = require('./src/models'); // loads graphql models
+import models from './src/models'; // loads graphql models
+
 const User = mongoose.model('user');
 
 async function userSeeder() {

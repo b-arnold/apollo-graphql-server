@@ -2,10 +2,10 @@
   "name": "apollo-graphql-server",
   "version": "1.0.0",
   "description": "boilerplate server using apollo and graphql",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon index.js",
+    "dev": "nodemon server.js --exec babel-node",
+    "build": "babel --copy-files src --out-dir dist",
     "seed": "node seed.js"
   },
   "keywords": [
@@ -15,6 +15,14 @@
   ],
   "author": "Brett Arnold",
   "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.2.0",
+    "@babel/core": "^7.0.0-rc.1",
+    "@babel/node": "^7.0.0-rc.1",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0-rc.1",
+    "@babel/preset-env": "^7.0.0-rc.1",
+    "nodemon": "^1.18.9"
+  },
   "dependencies": {
     "apollo-server": "^2.3.1",
     "apollo-server-express": "^2.3.1",
@@ -24,7 +32,21 @@
     "faker": "^4.1.0",
     "graphql": "^14.0.2",
     "mongoose": "^5.4.1",
-    "morgan": "^1.9.1",
-    "nodemon": "^1.18.9"
+    "morgan": "^1.9.1"
+  },
+  "babel": {
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "targets": {
+            "node": "current"
+          }
+        }
+      ]
+    ],
+    "plugins": [
+      "@babel/plugin-proposal-object-rest-spread"
+    ]
   }
 }

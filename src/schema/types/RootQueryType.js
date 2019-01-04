@@ -1,12 +1,13 @@
-const {
+import {
     GraphQLObjectType,
     GraphQLID,
     GraphQLList,
     GraphQLNonNull
-} = require('graphql');
-const mongoose = require('mongoose');
+} from 'graphql';
+import mongoose from 'mongoose';
 
-const UserType = require('./UserType');
+import UserType from './UserType';
+
 const User = mongoose.model('user');
 
 const RootQuery = new GraphQLObjectType({
@@ -30,4 +31,4 @@ const RootQuery = new GraphQLObjectType({
     }
 });
 
-module.exports = RootQuery;
+export default RootQuery;

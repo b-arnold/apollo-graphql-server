@@ -1,13 +1,13 @@
-require('dotenv').config() // loads environment variables
-const express = require('express'); 
-const models = require('./src/models'); // loads graphql models
-const { ApolloServer } = require('apollo-server-express'); // Apollo implementation of graphql server with express
-const schema = require('./src/schema/schema');
-const mongoose = require('mongoose');
-mongoose.set('useFindAndModify', false); 
-const morgan = require('morgan');
+import 'dotenv/config'; // loads environment variables
+import express from 'express';
+import models from './src/models'; // loads graphql models
+import { ApolloServer } from 'apollo-server-express'; // Apollo implementation of graphql server with express
+import schema from './src/schema/schema';
+import mongoose from 'mongoose';
+import morgan from 'morgan';
 
 const app = express();
+mongoose.set('useFindAndModify', false); 
 
 const server = new ApolloServer({
   schema

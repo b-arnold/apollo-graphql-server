@@ -1,12 +1,12 @@
-const {
+import {
     GraphQLNonNull, 
     GraphQLObjectType,
     GraphQLString,
     GraphQLID
-} = require('graphql')
-const mongoose = require('mongoose');
+} from 'graphql';
+import mongoose from 'mongoose';
 
-const UserType = require('./types/UserType');
+import UserType from './types/UserType';
 const User = mongoose.model('user');
 
 const mutation = new GraphQLObjectType({
@@ -55,4 +55,4 @@ const mutation = new GraphQLObjectType({
     }
 })
 
-module.exports = mutation;
+export default mutation;
